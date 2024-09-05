@@ -58,7 +58,7 @@ ParticleSimulation::ParticleSimulation(int pHeight, int pWidth, int mParticles, 
 	speedLimit = 100.0f / 60.0f;
 	energyDampener = 1.0f;
 	universalX = 0.0f;
-	universalY - 0.0f;
+	universalY = 0.0f;
 
 	typeMat = new float*[nTypes];
 
