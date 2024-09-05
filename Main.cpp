@@ -107,9 +107,9 @@ int main()
 	simulator.setSpeedLimit(90.0f);
 
 	// Initilising vertex and index buffers
-	GLfloat vertices[13 * 6 * num_particles] = {};
+	GLfloat* vertices = new GLfloat[13 * 6 * num_particles]{};
 
-	GLuint indices[21 * num_particles] = {};
+	GLuint* indices = new GLuint[21 * num_particles]{};
 	fillIndices(indices, num_particles);
 
 	Shader shaderProgram("particle2d.vert", "default.frag");
@@ -118,7 +118,7 @@ int main()
 	VAO VAO1;
 
 	// Generates Element Buffer Object and links it to indices
-	EBO EBO1(indices, sizeof(indices));
+	EBO EBO1(indices, 21 * num_particles);
 
 	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
 
@@ -147,7 +147,7 @@ int main()
 			fillVertices(simulator.particleList(), vertices, num_particles, typeData, 4);
 
 			VAO1.Bind();
-			VBO VBO1(vertices, sizeof(vertices));
+			VBO VBO1(vertices, 13 * 6 * num_particles);
 			EBO1.Bind();
 
 			//Linking layouts
